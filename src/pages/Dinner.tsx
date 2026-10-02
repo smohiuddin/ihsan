@@ -78,7 +78,7 @@ export default function Dinner() {
           <Link href="/" className="ev-wordmark">
             <span>Ihsan</span>
           </Link>
-          <span>© {new Date().getFullYear()} Ihsan</span>
+          <span className="ev-powered">Powered by The Network</span>
         </footer>
       </div>
 
@@ -238,6 +238,10 @@ export default function Dinner() {
           font-size: .7rem;
           letter-spacing: .06em;
           text-transform: uppercase;
+        }
+        .ev-powered {
+          letter-spacing: .2em;
+          color: hsl(var(--primary) / .55);
         }
         .ev-reveal {
           animation: ev-rise .8s cubic-bezier(.22,1,.36,1) both;

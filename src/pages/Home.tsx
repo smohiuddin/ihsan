@@ -72,8 +72,9 @@ export default function Home() {
         transition={{ duration: 1.2, delay: 2.6 }}
         className="home-network"
       >
-        <span>The Network</span> An invisible, decentralized network to systematically identify and
-        connect exceptional talent.
+        <span>Powered by The Network</span>
+        An invisible, decentralized network to systematically identify and connect exceptional
+        talent.
       </motion.p>
 
       <style>{`
@@ -176,7 +177,8 @@ export default function Home() {
           color: hsl(var(--foreground) / 0.32);
         }
         .home-network span {
-          margin-right: 0.5rem;
+          display: block;
+          margin-bottom: 0.35rem;
           letter-spacing: 0.2em;
           text-transform: uppercase;
           color: hsl(var(--primary) / 0.55);
