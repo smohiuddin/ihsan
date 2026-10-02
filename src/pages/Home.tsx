@@ -66,6 +66,16 @@ export default function Home() {
         </motion.div>
       </main>
 
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.2, delay: 2.6 }}
+        className="home-network"
+      >
+        <span>The Network</span> An invisible, decentralized network to systematically identify and
+        connect exceptional talent.
+      </motion.p>
+
       <style>{`
         .home {
           position: relative;
@@ -151,6 +161,26 @@ export default function Home() {
           border-color: hsl(var(--primary) / 0.5);
         }
         .home-event-date { color: hsl(var(--primary)); }
+        .home-network {
+          position: relative;
+          z-index: 1;
+          margin: 0 auto;
+          padding: 0 1.5rem 2rem;
+          max-width: 34rem;
+          text-align: center;
+          font-family: var(--font-mono);
+          font-weight: 300;
+          font-size: 0.66rem;
+          line-height: 1.7;
+          letter-spacing: 0.06em;
+          color: hsl(var(--foreground) / 0.32);
+        }
+        .home-network span {
+          margin-right: 0.5rem;
+          letter-spacing: 0.2em;
+          text-transform: uppercase;
+          color: hsl(var(--primary) / 0.55);
+        }
       `}</style>
     </div>
   );
