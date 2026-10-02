@@ -166,22 +166,22 @@ export default function Home() {
           position: relative;
           z-index: 1;
           margin: 0 auto;
-          padding: 0 1.5rem 2rem;
-          max-width: 34rem;
+          padding: 0 1.5rem 2.25rem;
+          max-width: 30rem;
           text-align: center;
-          font-family: var(--font-mono);
           font-weight: 300;
-          font-size: 0.66rem;
-          line-height: 1.7;
-          letter-spacing: 0.06em;
-          color: hsl(var(--foreground) / 0.32);
+          font-size: 0.88rem;
+          line-height: 1.6;
+          color: hsl(var(--foreground) / 0.55);
         }
         .home-network span {
           display: block;
-          margin-bottom: 0.35rem;
+          margin-bottom: 0.4rem;
+          font-family: var(--font-mono);
+          font-size: 0.68rem;
           letter-spacing: 0.2em;
           text-transform: uppercase;
-          color: hsl(var(--primary) / 0.55);
+          color: hsl(var(--primary) / 0.85);
         }
       `}</style>
     </div>

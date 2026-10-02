@@ -250,7 +250,7 @@ export default function Dinner() {
         }
         .ev-powered {
           letter-spacing: .2em;
-          color: hsl(var(--primary) / .55);
+          color: hsl(var(--primary) / .85);
         }
         .ev-reveal {
           animation: ev-rise .8s cubic-bezier(.22,1,.36,1) both;
