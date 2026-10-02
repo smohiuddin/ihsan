@@ -8,7 +8,9 @@ export type Attendee = {
 export const dinner = {
   title: 'Series A+',
   emphasis: 'Founders Dinner',
-  description: 'A dinner for Muslim founders who have raised a Series A or later.',
+  description:
+    'A dinner for Muslim founders who have raised a Series A or later, built around shared learnings.',
+  note: 'Founders only',
   details: [
     { label: 'Date', value: 'Thursday, October 29' },
     { label: 'Time', value: '7pm' },

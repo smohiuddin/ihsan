@@ -36,6 +36,7 @@ export default function Dinner() {
               <em>{dinner.emphasis}</em>
             </h1>
             <p className="ev-description ev-reveal">{dinner.description}</p>
+            <p className="ev-note ev-reveal">{dinner.note}</p>
           </div>
         </section>
 
@@ -170,6 +171,14 @@ export default function Dinner() {
           font-size: clamp(1.05rem, 1.5vw, 1.3rem);
           line-height: 1.55;
         }
+        .ev-note {
+          margin: 1.4rem 0 0;
+          color: hsl(var(--primary));
+          font-family: var(--font-mono);
+          font-size: .75rem;
+          letter-spacing: .14em;
+          text-transform: uppercase;
+        }
         .ev-section {
           display: grid;
           grid-template-columns: 1fr 2fr;
@@ -248,6 +257,7 @@ export default function Dinner() {
         }
         .ev-title { animation-delay: 150ms; }
         .ev-description { animation-delay: 230ms; }
+        .ev-note { animation-delay: 310ms; }
         @keyframes ev-rise {
           from { opacity: 0; transform: translateY(1rem); }
         }
