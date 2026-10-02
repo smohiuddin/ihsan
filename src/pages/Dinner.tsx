@@ -129,6 +129,7 @@ export default function Dinner() {
           text-decoration: none;
           font-family: var(--font-display);
           font-size: 1.35rem;
+          font-weight: 300;
           letter-spacing: .01em;
         }
         .ev-wordmark span { color: hsl(var(--foreground)); }
@@ -154,7 +155,7 @@ export default function Dinner() {
           margin: 0;
           font-family: var(--font-display);
           font-size: clamp(3.4rem, 8.6vw, 7.4rem);
-          font-weight: 400;
+          font-weight: 300;
           line-height: .95;
           letter-spacing: -.03em;
         }
@@ -199,7 +200,7 @@ export default function Dinner() {
           margin: auto 0 0;
           font-family: var(--font-display);
           font-size: clamp(1.7rem, 2.3vw, 2.1rem);
-          font-weight: 400;
+          font-weight: 300;
           letter-spacing: -.005em;
           line-height: 1.15;
         }

@@ -153,7 +153,7 @@ export default function Home() {
         .home-wordmark {
           margin: 0;
           font-family: var(--font-display);
-          font-weight: 400;
+          font-weight: 300;
           font-size: clamp(3rem, 7vw, 5rem);
           line-height: 0.9;
           letter-spacing: 0.01em;
