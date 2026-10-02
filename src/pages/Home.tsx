@@ -1,10 +1,27 @@
+import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'wouter';
 import IhsanMark from '../IhsanMark';
+import NetworkLayer from '../NetworkLayer';
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
 export default function Home() {
+  const [revealed, setRevealed] = useState(false);
+  const touched = useRef(false);
+  const pointer = useRef('mouse');
+
+  // No cursor on touch screens, so give them one glimpse of the network after the intro.
+  useEffect(() => {
+    if (!window.matchMedia('(hover: none)').matches) return;
+    const show = setTimeout(() => !touched.current && setRevealed(true), 3200);
+    const hide = setTimeout(() => !touched.current && setRevealed(false), 7600);
+    return () => {
+      clearTimeout(show);
+      clearTimeout(hide);
+    };
+  }, []);
+
   return (
     <div className="home">
       {/* Grid */}
@@ -18,12 +35,15 @@ export default function Home() {
         transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
       />
 
-      <main className="home-main">
+      <NetworkLayer revealed={revealed} />
+
+      <main className={`home-main${revealed ? ' home-main-under' : ''}`}>
         <motion.div
           initial={{ opacity: 0, scale: 0.88 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.1, ease }}
           className="home-mark"
+          data-network-hub
         >
           <IhsanMark size={120} />
         </motion.div>
@@ -66,16 +86,26 @@ export default function Home() {
         </motion.div>
       </main>
 
-      <motion.p
+      <motion.button
+        type="button"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.2, delay: 2.6 }}
         className="home-network"
+        aria-pressed={revealed}
+        onPointerEnter={(e) => e.pointerType === 'mouse' && setRevealed(true)}
+        onPointerLeave={(e) => e.pointerType === 'mouse' && setRevealed(false)}
+        onPointerDown={(e) => (pointer.current = e.pointerType)}
+        onClick={() => {
+          touched.current = true;
+          // Mouse users already revealed it by hovering; touch users toggle with a tap.
+          setRevealed((r) => (pointer.current === 'mouse' ? true : !r));
+        }}
       >
         <span>Powered by The Network</span>
         An invisible, decentralized network to systematically identify and connect exceptional
         talent.
-      </motion.p>
+      </motion.button>
 
       <style>{`
         .home {
@@ -110,6 +140,11 @@ export default function Home() {
           justify-content: center;
           padding: 2rem 1.5rem;
           text-align: center;
+          transition: opacity .8s ease, filter .8s ease;
+        }
+        .home-main-under {
+          opacity: .35;
+          filter: blur(1px);
         }
         .home-mark {
           color: hsl(var(--primary));
@@ -118,11 +153,10 @@ export default function Home() {
         .home-wordmark {
           margin: 0;
           font-family: var(--font-display);
-          font-weight: 600;
-          font-size: clamp(2rem, 5vw, 4rem);
-          line-height: 0.88;
-          letter-spacing: 0.08em;
-          text-transform: uppercase;
+          font-weight: 400;
+          font-size: clamp(3rem, 7vw, 5rem);
+          line-height: 0.9;
+          letter-spacing: 0.01em;
         }
         .home-rule {
           margin-top: 0.85rem;
@@ -164,7 +198,13 @@ export default function Home() {
         .home-event-date { color: hsl(var(--primary)); }
         .home-network {
           position: relative;
-          z-index: 1;
+          z-index: 2;
+          display: block;
+          border: 0;
+          background: none;
+          cursor: pointer;
+          font-family: var(--font-body);
+          -webkit-tap-highlight-color: transparent;
           margin: 0 auto;
           padding: 0 1.5rem 2.25rem;
           max-width: 30rem;
@@ -183,6 +223,7 @@ export default function Home() {
           text-transform: uppercase;
           color: hsl(var(--primary) / 0.85);
         }
+        .home-network:focus-visible { outline: 1px solid hsl(var(--primary) / .5); outline-offset: 4px; }
       `}</style>
     </div>
   );

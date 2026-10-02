@@ -36,7 +36,6 @@ export default function Dinner() {
               <em>{dinner.emphasis}</em>
             </h1>
             <p className="ev-description ev-reveal">{dinner.description}</p>
-            <p className="ev-note ev-reveal">{dinner.note}</p>
           </div>
         </section>
 
@@ -129,12 +128,14 @@ export default function Dinner() {
           color: hsl(var(--primary));
           text-decoration: none;
           font-family: var(--font-display);
-          font-weight: 600;
-          font-size: .85rem;
-          letter-spacing: .14em;
-          text-transform: uppercase;
+          font-size: 1.35rem;
+          letter-spacing: .01em;
         }
         .ev-wordmark span { color: hsl(var(--foreground)); }
+        .ev-footer .ev-wordmark {
+          text-transform: none;
+          letter-spacing: .01em;
+        }
         .ev-section-label,
         .ev-index {
           font-family: var(--font-mono);
@@ -152,32 +153,23 @@ export default function Dinner() {
         .ev-title {
           margin: 0;
           font-family: var(--font-display);
-          font-size: clamp(3.6rem, 9vw, 7.8rem);
+          font-size: clamp(3.4rem, 8.6vw, 7.4rem);
           font-weight: 400;
-          line-height: .9;
-          letter-spacing: -.06em;
+          line-height: .95;
+          letter-spacing: -.03em;
         }
         .ev-title em {
           display: block;
           color: hsl(var(--primary));
           font-style: normal;
-          font-weight: 300;
         }
         .ev-description {
           max-width: 64ch;
           margin: 2.2rem 0 0;
           color: hsl(var(--muted));
           font-weight: 300;
-          font-size: clamp(1.05rem, 1.5vw, 1.3rem);
+          font-size: clamp(1.05rem, 1.4vw, 1.2rem);
           line-height: 1.55;
-        }
-        .ev-note {
-          margin: 1.4rem 0 0;
-          color: hsl(var(--primary));
-          font-family: var(--font-mono);
-          font-size: .75rem;
-          letter-spacing: .14em;
-          text-transform: uppercase;
         }
         .ev-section {
           display: grid;
@@ -206,9 +198,9 @@ export default function Dinner() {
         .ev-details h3 {
           margin: auto 0 0;
           font-family: var(--font-display);
-          font-size: clamp(1.35rem, 1.9vw, 1.75rem);
-          font-weight: 500;
-          letter-spacing: -.03em;
+          font-size: clamp(1.7rem, 2.3vw, 2.1rem);
+          font-weight: 400;
+          letter-spacing: -.005em;
           line-height: 1.15;
         }
         .ev-details p {
@@ -257,7 +249,6 @@ export default function Dinner() {
         }
         .ev-title { animation-delay: 150ms; }
         .ev-description { animation-delay: 230ms; }
-        .ev-note { animation-delay: 310ms; }
         @keyframes ev-rise {
           from { opacity: 0; transform: translateY(1rem); }
         }

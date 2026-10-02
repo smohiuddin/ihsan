@@ -8,9 +8,9 @@
   --rule: 40 10% 18%;
   --muted: 40 8% 58%;
 
-  --font-display: 'Space Grotesk', sans-serif;
-  --font-body: 'DM Sans', sans-serif;
-  --font-mono: 'DM Mono', monospace;
+  --font-display: 'Newsreader', Georgia, serif;
+  --font-body: 'Geist', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, monospace;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
