@@ -163,7 +163,7 @@ export default function Dinner() {
           font-weight: 300;
         }
         .ev-description {
-          max-width: 38ch;
+          max-width: 64ch;
           margin: 2.2rem 0 0;
           color: hsl(var(--muted));
           font-weight: 300;
