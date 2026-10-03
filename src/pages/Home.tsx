@@ -70,7 +70,7 @@ export default function Home() {
           transition={{ duration: 0.6, delay: 1.85 }}
           className="home-tagline"
         >
-          We are Muslim founders trying to strive for excellence in all aspects of our life.
+          We are founders trying to strive for excellence in all aspects of our life.
         </motion.p>
 
         <motion.div

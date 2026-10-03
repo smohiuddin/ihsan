@@ -9,7 +9,7 @@ export const dinner = {
   title: 'Series A+',
   emphasis: 'Founders Dinner',
   description:
-    'A dinner for Muslim founders who have raised a Series A or later, built around shared learnings.',
+    'A dinner for founders who have raised a Series A or later, built around shared learnings.',
   details: [
     { label: 'Date', value: 'Thursday, October 29' },
     { label: 'Time', value: '7pm' },
