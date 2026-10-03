@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { Link } from 'wouter';
 import IhsanMark from '../IhsanMark';
+import RequestForm from '../RequestForm';
 import { dinner } from '../data/dinner';
 
 export default function Dinner() {
@@ -36,6 +37,16 @@ export default function Dinner() {
               <em>{dinner.emphasis}</em>
             </h1>
             <p className="ev-description ev-reveal">{dinner.description}</p>
+            <a
+              href="#request"
+              className="ev-cta ev-reveal"
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById('request')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
+              Request to attend <span aria-hidden="true">→</span>
+            </a>
           </div>
         </section>
 
@@ -49,6 +60,11 @@ export default function Dinner() {
               </article>
             ))}
           </div>
+        </section>
+
+        <section className="ev-section" id="request">
+          <div className="ev-section-label">Request to attend</div>
+          <RequestForm event={`${dinner.title} ${dinner.emphasis} · ${dinner.details[0].value}`} />
         </section>
 
         {dinner.attendees.length ? (
@@ -172,6 +188,22 @@ export default function Dinner() {
           font-size: clamp(1.05rem, 1.4vw, 1.2rem);
           line-height: 1.55;
         }
+        .ev-cta {
+          display: inline-flex;
+          gap: .8rem;
+          margin-top: 2.2rem;
+          padding-bottom: .5rem;
+          border-bottom: 1px solid hsl(var(--primary) / .4);
+          color: hsl(var(--primary));
+          font-family: var(--font-mono);
+          font-size: .72rem;
+          letter-spacing: .18em;
+          text-transform: uppercase;
+          text-decoration: none;
+          transition: border-color .3s ease;
+        }
+        .ev-cta:hover { border-color: hsl(var(--primary)); }
+        #request { scroll-margin-top: 1rem; }
         .ev-section {
           display: grid;
           grid-template-columns: 1fr 2fr;
@@ -250,6 +282,7 @@ export default function Dinner() {
         }
         .ev-title { animation-delay: 150ms; }
         .ev-description { animation-delay: 230ms; }
+        .ev-cta { animation-delay: 300ms; }
         @keyframes ev-rise {
           from { opacity: 0; transform: translateY(1rem); }
         }
