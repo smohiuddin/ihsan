@@ -1,10 +1,17 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'wouter';
 import IhsanMark from '../IhsanMark';
 import RequestForm from '../RequestForm';
 import { dinner } from '../data/dinner';
 
 export default function Dinner() {
+  const [requesting, setRequesting] = useState(false);
+
+  // Scroll to the form once it has rendered.
+  useEffect(() => {
+    if (requesting) document.getElementById('request')?.scrollIntoView({ behavior: 'smooth' });
+  }, [requesting]);
+
   useEffect(() => {
     document.title = `${dinner.title} ${dinner.emphasis} · Ihsan`;
     return () => {
@@ -37,16 +44,19 @@ export default function Dinner() {
               <em>{dinner.emphasis}</em>
             </h1>
             <p className="ev-description ev-reveal">{dinner.description}</p>
-            <a
-              href="#request"
+            <button
+              type="button"
               className="ev-cta ev-reveal"
-              onClick={(e) => {
-                e.preventDefault();
-                document.getElementById('request')?.scrollIntoView({ behavior: 'smooth' });
-              }}
+              aria-expanded={requesting}
+              aria-controls="request"
+              onClick={() =>
+                requesting
+                  ? document.getElementById('request')?.scrollIntoView({ behavior: 'smooth' })
+                  : setRequesting(true)
+              }
             >
-              Request to attend <span aria-hidden="true">→</span>
-            </a>
+              Request to attend <span aria-hidden="true">{requesting ? '↓' : '→'}</span>
+            </button>
           </div>
         </section>
 
@@ -62,10 +72,12 @@ export default function Dinner() {
           </div>
         </section>
 
-        <section className="ev-section" id="request">
-          <div className="ev-section-label">Request to attend</div>
-          <RequestForm event={`${dinner.title} ${dinner.emphasis} · ${dinner.details[0].value}`} />
-        </section>
+        {requesting ? (
+          <section className="ev-section ev-request" id="request">
+            <div className="ev-section-label">Request to attend</div>
+            <RequestForm event={`${dinner.title} ${dinner.emphasis} · ${dinner.details[0].value}`} />
+          </section>
+        ) : null}
 
         {dinner.attendees.length ? (
           <section className="ev-section">
@@ -192,7 +204,7 @@ export default function Dinner() {
           display: inline-flex;
           gap: .8rem;
           margin-top: 2.2rem;
-          padding-bottom: .5rem;
+          padding: 0 0 .5rem;
           border-bottom: 1px solid hsl(var(--primary) / .4);
           color: hsl(var(--primary));
           font-family: var(--font-mono);
@@ -200,10 +212,16 @@ export default function Dinner() {
           letter-spacing: .18em;
           text-transform: uppercase;
           text-decoration: none;
+          background: none;
+          border-top: 0;
+          border-left: 0;
+          border-right: 0;
+          cursor: pointer;
           transition: border-color .3s ease;
         }
         .ev-cta:hover { border-color: hsl(var(--primary)); }
         #request { scroll-margin-top: 1rem; }
+        .ev-request { animation: ev-rise .7s cubic-bezier(.22,1,.36,1) both; }
         .ev-section {
           display: grid;
           grid-template-columns: 1fr 2fr;
