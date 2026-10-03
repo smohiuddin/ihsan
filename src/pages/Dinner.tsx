@@ -9,7 +9,9 @@ export default function Dinner() {
 
   // Scroll to the form once it has rendered.
   useEffect(() => {
-    if (requesting) document.getElementById('request')?.scrollIntoView({ behavior: 'smooth' });
+    if (!requesting) return;
+    const el = document.getElementById('request');
+    if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 16, behavior: 'smooth' });
   }, [requesting]);
 
   useEffect(() => {
@@ -60,6 +62,13 @@ export default function Dinner() {
           </div>
         </section>
 
+        {requesting ? (
+          <section className="ev-section ev-request" id="request">
+            <div className="ev-section-label">Request to attend</div>
+            <RequestForm event={`${dinner.title} ${dinner.emphasis} · ${dinner.details[0].value}`} />
+          </section>
+        ) : null}
+
         <section className="ev-section">
           <div className="ev-section-label">Details</div>
           <div className="ev-details">
@@ -71,13 +80,6 @@ export default function Dinner() {
             ))}
           </div>
         </section>
-
-        {requesting ? (
-          <section className="ev-section ev-request" id="request">
-            <div className="ev-section-label">Request to attend</div>
-            <RequestForm event={`${dinner.title} ${dinner.emphasis} · ${dinner.details[0].value}`} />
-          </section>
-        ) : null}
 
         {dinner.attendees.length ? (
           <section className="ev-section">
@@ -203,8 +205,8 @@ export default function Dinner() {
         .ev-cta {
           display: inline-flex;
           gap: .8rem;
-          margin-top: 2.2rem;
-          padding: 0 0 .5rem;
+          margin-top: 1.4rem;
+          padding: 1rem 0 .6rem;
           border-bottom: 1px solid hsl(var(--primary) / .4);
           color: hsl(var(--primary));
           font-family: var(--font-mono);
